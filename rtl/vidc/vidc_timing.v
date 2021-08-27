@@ -128,14 +128,14 @@ always @(posedge clkcpu) begin
 				VIDEO_VDER: 	vidc_vder <= cpu_dat[23:14];
 				
 				// horizontal timing
-				VIDEO_HCR: 		vidc_hcr  <= {cpu_dat[22:14], 1'b0};
-				VIDEO_HSWR: 	vidc_hswr <= {cpu_dat[22:14], 1'b0};
-				VIDEO_HBSR: 	vidc_hbsr <= {cpu_dat[22:14], 1'b0};
-				VIDEO_HBER: 	vidc_hber <= {cpu_dat[22:14], 1'b0};
-				VIDEO_HDSR: 	vidc_hdsr <= {cpu_dat[22:14], 1'b0};
-				VIDEO_HDER: 	vidc_hder <= {cpu_dat[22:14], 1'b0};
+				VIDEO_HCR: 		vidc_hcr  <= {cpu_dat[22:14], 1'b0}; // Correct for the fact that these trigger 1 cycle late (this breaks some demos)
+				VIDEO_HSWR: 	vidc_hswr <= {cpu_dat[22:14], 1'b0} - 10'd1;
+				VIDEO_HBSR: 	vidc_hbsr <= {cpu_dat[22:14], 1'b0} - 10'd1;
+				VIDEO_HBER: 	vidc_hber <= {cpu_dat[22:14], 1'b0} - 10'd1;
+				VIDEO_HDSR: 	vidc_hdsr <= {cpu_dat[22:14], 1'b0} - 10'd1;
+				VIDEO_HDER: 	vidc_hder <= {cpu_dat[22:14], 1'b0} - 10'd1;
 				
-				VIDEO_HCSR: 	vidc_hcsr <= cpu_dat[23:13];
+				VIDEO_HCSR: 	vidc_hcsr <= cpu_dat[23:13] - 10'd1;
 					
 				VIDEO_VCSR: 	vidc_vcsr <= cpu_dat[23:14];
 				VIDEO_VCER: 	vidc_vcer <= cpu_dat[23:14];
