@@ -278,7 +278,7 @@ always @(posedge clkcpu) begin : block
 		end 
 	
 		// video dma stuff.
-		if (flybk == 1'b1) begin
+		if (~dma_in_progress & (flybk == 1'b1)) begin
 
 			// stop all video dma on flybk
 			vid_address <= vid_init;
